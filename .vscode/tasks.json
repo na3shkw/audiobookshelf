@@ -35,6 +35,18 @@
 				"kind": "test",
 				"isDefault": false
 			}
+		},
+		{
+			"label": "Dev: Backend + Frontend",
+			"dependsOn": [
+				"Run server",
+				"Run Live-reload client"
+			],
+			"dependsOrder": "parallel",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			}
 		}
 	]
 }

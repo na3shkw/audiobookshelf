@@ -21,6 +21,7 @@ const languageCodeMap = {
   he: { label: 'עברית', dateFnsLocale: 'he' },
   hr: { label: 'Hrvatski', dateFnsLocale: 'hr' },
   it: { label: 'Italiano', dateFnsLocale: 'it' },
+  ja: { label: '日本語', dateFnsLocale: 'ja' },
   lt: { label: 'Lietuvių', dateFnsLocale: 'lt' },
   hu: { label: 'Magyar', dateFnsLocale: 'hu' },
   ko: { label: '한국어', dateFnsLocale: 'ko' },
@@ -151,7 +152,8 @@ async function loadi18n(code) {
     return false
   }
 
-  const strings = translations[code] || (await loadTranslationStrings(code))
+  const cached = process.env.NODE_ENV !== 'development' && translations[code]
+  const strings = cached || (await loadTranslationStrings(code))
   if (!strings) {
     console.warn(`Invalid lang code ${code}`)
     return false
